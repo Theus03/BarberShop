@@ -44,7 +44,7 @@ namespace BarberShop.Controllers
 
             else
             {
-                ViewBag.msgLogar = "Usuário não encontrado. Verifique o nome do usuário e a senha";
+                ViewBag.msgLogar = " ❗ Usuário não encontrado. Verifique o nome do usuário e a senha";
                 return View();
             }
         }

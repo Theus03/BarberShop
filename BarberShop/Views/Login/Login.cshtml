@@ -8,18 +8,98 @@
 
 @ViewBag.confCadastro
 
-<h2>Login</h2>
-@using (Html.BeginForm("Login", "Login", FormMethod.Post))
-{
+<style>
+    :root {
+        --white: #fff;
+        --redBorder: #f030010;
+        --redMain: #fd3946;
+    }
 
-    @Html.EditorFor(x => x.user_login, new { htmlAttributes = new { id = "txtUsuario", senha = "txtUsuario", type = "text", @class = "form-control", placeholder = "Nome de usuário", required = "required", maxlength = "30" } })
-    @Html.ValidationMessageFor(x => x.user_login, "", new { @class = "text-danger" })
-    <br />
+    body {
+        margin: 0;
+        box-sizing: border-box;
+        background-image: linear-gradient(to top, #000 0%, #09203f 100%);
+    }
 
-    @Html.EditorFor(x => x.senha_login, new { htmlAttributes = new { id = "txtSenha", senha = "txtSenha", type = "password", @class = "form-control", placeholder = "Digite sua senha", required = "required", maxlength = "10" } })
-    @Html.ValidationMessageFor(x => x.senha_login, "", new { @class = "text-danger" })
-    <br />
+        main{
+            position: absolute;
+            background: rgba(67, 67, 67, 0.70);
+            border: solid 1px #707070;
+            width:80%;
+            height:75%;
+            margin:5rem 8rem;
+            display:grid;
+            justify-content: center;            
+        }
+    .criaConta {
+        border: solid 3px red;
+        color: black;
+        font: bold 16pt Segoe UI;
+        text-decoration: none;
+        background: var(--white);
+        margin: 10% auto;
+        padding-top:3%;
+        width: 100%;
+        height:28%;
+        border-radius: 50px;
+        display: grid;
+        justify-content: center;
+    }
+            main > h1 {
+                font: bold 25pt Segoe UI;
+                color: var(--white);
+            }
+        .campo{
+            border: none;
+            text-align:center;
+            font: bold 16pt Segoe UI;
+            outline: none;
+            border-radius:50px;
+            width:100%;
+            height:100%;
+        }
+            .campo::placeholder {
+                font: italic 16pt Segoe UI;
+            }
+            .campo:focus{
+                border: solid 3px red;
+            }
+    footer {
+        background: none;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+    }
 
-    @ViewBag.msgLogar<br/>
-    <input type="submit" class="button button-a button-big button-rouded" value="ENTRAR">
-}
+        footer > input {
+            border: none;
+            font: bold 20pt Segoe UI;
+            color: var(--white);
+            background: #fd3946;
+            width: 100%;
+            padding: 40px 0px 30px;
+            cursor: pointer;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            z-index: 1000;
+        }
+</style>
+
+<body>
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        <main>
+            @Html.ActionLink("CRIAR CONTA", "","", new { @class="criaConta"})
+            <h1>JÁ TEM UMA CONTA? ENTRE.</h1>
+            @Html.EditorFor(x => x.user_login, new { htmlAttributes = new { id = "txtUsuario", senha = "txtUsuario", type = "text", @class = "campo", placeholder = "Nome de usuário", required = "required", maxlength = "30" } })
+            @Html.ValidationMessageFor(x => x.user_login, "", new { @class = "text-danger" })
+           
+            @Html.EditorFor(x => x.senha_login, new { htmlAttributes = new { id = "txtSenha", senha = "txtSenha", type = "password", @class = "campo", placeholder = "Senha", required = "required", maxlength = "10" } })
+            @Html.ValidationMessageFor(x => x.senha_login, "", new { @class = "text-danger" })
+            <div style="font: bold 12pt Segoe UI; color: #fff;">@ViewBag.msgLogar</div><br />
+        </main>
+        <footer><input type="submit" class="button button-a button-big button-rouded" value="ENTRAR"/></footer>
+    }
+</body>
