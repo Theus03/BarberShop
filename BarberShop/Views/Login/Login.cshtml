@@ -1,0 +1,25 @@
+﻿@model BarberShop.Models.modelLogin
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+@ViewBag.confCadastro
+
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+
+    @Html.EditorFor(x => x.user_login, new { htmlAttributes = new { id = "txtUsuario", senha = "txtUsuario", type = "text", @class = "form-control", placeholder = "Nome de usuário", required = "required", maxlength = "30" } })
+    @Html.ValidationMessageFor(x => x.user_login, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.EditorFor(x => x.senha_login, new { htmlAttributes = new { id = "txtSenha", senha = "txtSenha", type = "password", @class = "form-control", placeholder = "Digite sua senha", required = "required", maxlength = "10" } })
+    @Html.ValidationMessageFor(x => x.senha_login, "", new { @class = "text-danger" })
+    <br />
+
+    @ViewBag.msgLogar<br/>
+    <input type="submit" class="button button-a button-big button-rouded" value="ENTRAR">
+}
