@@ -37,5 +37,6 @@ namespace BarberShop.Dados
             }
             con.MyDesconectarBD();
         }
+
     }
 }

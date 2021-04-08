@@ -121,14 +121,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Dados\acoesLogin.cs" />
+    <Compile Include="Dados\acoesReserva.cs" />
     <Compile Include="Dados\conexao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\modelLogin.cs" />
+    <Compile Include="Models\modelReserva.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +140,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\calendar.gif" />
+    <Content Include="fonts\foto_homeCli.png" />
+    <Content Include="fonts\foto_homeFunc.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\logo.png" />
+    <Content Include="fonts\logo_semFundo.png" />
+    <Content Include="fonts\time.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -168,6 +177,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Cliente\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

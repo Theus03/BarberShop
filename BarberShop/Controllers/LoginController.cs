@@ -36,6 +36,8 @@ namespace BarberShop.Controllers
                 else
                 {
                     Session["tipoLogado2"] = verLogin.tipo_login.ToString();//=2
+                    return RedirectToAction("Home", "Cliente");
+
                 }
 
 
