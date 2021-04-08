@@ -1,4 +1,5 @@
-﻿
+﻿@model BarberShop.Models.modelReserva
+
 @{
     Layout = null;
 }
@@ -8,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Home - BabrberShop</title>
+    <title>Agendar - BarberShop</title>
     <style>
         :root {
             --white: #fff;
@@ -21,8 +22,9 @@
             margin: 0;
             box-sizing: border-box;
             background-image: linear-gradient(to top, #000 0%, #09203f 100%);
-            height:100vh;
+            height: 100vh;
         }
+
         nav {
             margin: 4% 7%;
             z-index: 6000;
@@ -40,58 +42,64 @@
             list-style: none;
             display: flex;
         }
+
         .logo {
             margin: -0.5rem 3rem;
             width: 4em;
             transition: 0.5s;
         }
-        a{
+
+        a {
             width: 25rem;
-            margin:1%;
+            margin: 1%;
             text-decoration: none;
         }
-        li{
+
+        li {
             color: black;
             text-decoration: none;
             font: bold 12pt Segoe UI;
         }
-        section{
-            background: #fff;
+        section {
+            background: none;
             position: absolute;
-            margin: 15% 15%;
+            margin: 15% 27%;
+            justify-content: center;
             width: 45%;
             height: 45%;
             display: flex;
             border-radius: 10px;
         }
-        .col_one h1{
-            position: absolute;
-            margin: 5% 15%;
-            font: bold 18pt Segoe UI;
-            width: 25rem;
+        .campoList {
+            border: none;
+            width: 31vw;
+            padding: 20px;
+            margin-top: 1em;
+            border-radius: 30px;
         }
-        .col_one p {
-            position: absolute;
-            margin: 20% 15%;
-            font: bold 12pt Segoe UI;
-            width: 25rem;
+        .campo {
+            border: none;
+            width: 28vw;
+            padding: 20px;
+            margin-top: 1em;
+            border-radius: 30px;
         }
-        .col_one a {
-            position: absolute;
-            margin: 35% 15%;
+        .campo:focus, .campoList:focus{
+            border: solid 3px red;
+            outline: none;
+        }
+        .buttonAgendar {
+            margin: 13% 30%;
             font: bold 12pt Segoe UI;
             background: var(--blueButton);
             text-align: center;
-            width: 15rem;
-            border-radius:10px;
-            padding-top:2%;
-            padding-bottom:2%;
+            width: 10rem;
+            border: none;
+            border-radius: 10px;
+            padding-top: 4%;
+            padding-bottom: 4%;
             color: var(--white);
-        }
-        .col_two img{
-            width:23rem;
-            margin-left: 110%;
-            transform: rotate(25deg);
+            cursor: pointer;
         }
         footer {
             position: absolute;
@@ -104,31 +112,37 @@
             border-top-left-radius: 15px;
             z-index: 1000;
         }
+
             footer p {
                 font: bold 16pt Segoe UI;
                 margin: 0.5em 5.2em;
             }
-
     </style>
 </head>
 <body>
     <nav>
         <ul>
             <li><img class="logo" src="~/fonts/logo_semFundo.png"></li>
-            <a href="AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
+            <a href="" title="Agendar"><li>AGENDAR</li></a>
             <a href="" title="Consultar"><li>CONSULTAR AGENDAMENTO</li></a>
             <a href="../Login/Login" title="Sair"><li>SAIR</li></a>
         </ul>
     </nav>
     <section>
-        <div class="col_one">
-            <h1>AGENDAR DATA E HORA</h1>
-            <p>Venha para o BarberShop reserve uma<br/>data e um horário e venha para a melhor<br/>Barbearia da Região.</p>
-            <a href="AgendarReserva">AGENDAR</a>
-        </div>
-        <div class="col_two">
-            <img src="~/fonts/foto_homeCli.png"/>
-        </div>
+        @using (Html.BeginForm("AgendarReserva"))
+        {
+            <div class="editor-field">
+                @Html.DropDownList("barbeiro", ViewBag.barbeiro as List<SelectListItem>, "SELECIONE O BARBEIRO", new { @class = "campoList" })
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.data_reserva, new { htmlAttributes = new { @type = "date", @class = "campo", @placeholder = "Data" } })
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.hora, new { htmlAttributes = new { @type = "time", @class = "campo", @placeholder = "Hora" } })
+            </div>
+            <input type="submit" value="AGENDAR" class="buttonAgendar" />
+            <span style="color: white; font:bold 14pt Segoe UI; display: flex; margin-top:-10%;">@ViewBag.msg</span>
+        }
     </section>
     <footer>
         <p>Rua Atlanta - 15, Osasco-SP</p>

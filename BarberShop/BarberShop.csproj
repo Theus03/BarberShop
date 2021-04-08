@@ -130,6 +130,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\modelBarbeiro.cs" />
     <Compile Include="Models\modelLogin.cs" />
     <Compile Include="Models\modelReserva.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +179,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Cliente\Home.cshtml" />
+    <Content Include="Views\Cliente\AgendarReserva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

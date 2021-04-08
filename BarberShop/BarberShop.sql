@@ -29,6 +29,9 @@ create table tbl_barbeiro(
     telefone_barbeiro varchar(13)
 );
 
+insert into tbl_barbeiro(nm_barbeiro) values("Alex Silva");
+select * from tbl_barbeiro;
+
 create table tbl_reserva(
 	cd_reserva int primary key auto_increment,
     cd_cliente int references tbl_cliente(cd_cliente),
@@ -36,7 +39,10 @@ create table tbl_reserva(
     data_reserva varchar(15) not null,
     hora varchar(10) not null
 );
+select * from tbl_reserva;
+
 select tbl_reserva.cd_reserva, tbl_reserva.data_reserva,
 tbl_reserva.hora, tbl_cliente.nm_cliente,
 tbl_barbeiro.nm_barbeiro from tbl_reserva, tbl_cliente,
 tbl_barbeiro where tbl_reserva.cd_barbeiro = tbl_barbeiro.cd_barbeiro and tbl_reserva.cd_cliente = tbl_cliente.cd_cliente;
+
