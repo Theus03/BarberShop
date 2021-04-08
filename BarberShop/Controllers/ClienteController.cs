@@ -68,20 +68,27 @@ namespace BarberShop.Controllers
         // GET: Cliente
         public ActionResult Home()
         {
-            //if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
-            //{
-            //    return RedirectToAction("Login", "Login");
-            //}
-            //else
-            //{
+            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
                 return View();
-            //}
+            }
         }
         public ActionResult AgendarReserva()
         {
-            carregaBarbeiros();
-            carregaClientes();
-            return View();
+            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                carregaBarbeiros();
+                carregaClientes();
+                return View();
+            }
         }
 
 
@@ -110,9 +117,16 @@ namespace BarberShop.Controllers
         }
         public ActionResult VerReserva()
         {
-            acoesReserva dbhandle = new acoesReserva();
-            ModelState.Clear();
-            return View(dbhandle.GetAgendaReserva());
+            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                acoesReserva dbhandle = new acoesReserva();
+                ModelState.Clear();
+                return View(dbhandle.GetAgendaReserva());
+            }
         }
     }
 }
