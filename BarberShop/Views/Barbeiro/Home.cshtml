@@ -1,0 +1,129 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <style>
+        :root {
+        --white: #fff;
+        --redBorder: #f030010;
+        --redMain: #fd3946;
+        --blueButton: #0050f0;
+        }
+
+        body {
+        margin: 0;
+        box-sizing: border-box;
+        background-image: linear-gradient(to top, #000 0%, #09203f 100%);
+        height:100vh;
+        }
+        nav {
+        margin: 4% 7%;
+        z-index: 6000;
+        position: fixed;
+        width: 85%;
+        height: 80px;
+        border-radius: 50px;
+        background: var(--white);
+        border: solid 3px red;
+        transition: 0.5s;
+        text-align: center;
+        }
+
+        ul {
+        list-style: none;
+        display: flex;
+        }
+        .logo {
+        margin: -0.5rem 3rem;
+        width: 4em;
+        transition: 0.5s;
+        }
+        a{
+        width: 25rem;
+        margin:1%;
+        text-decoration: none;
+        }
+        li{
+        color: black;
+        text-decoration: none;
+        font: bold 12pt Segoe UI;
+        }
+        section{
+        background: #fff;
+        position: absolute;
+        margin: 15% 28%;
+        width: 45%;
+        height: 50%;
+        display: flex;
+        border-radius: 10px;
+        }
+        .col_one h1{
+        position: absolute;
+        margin: 5% 25%;
+        font: bold 18pt Segoe UI;
+        width: 25rem;
+        }
+
+        .col_one img {
+            width: 8rem;
+            margin-top:70%;
+            margin-left: 180%;
+        }
+        .col_one a {
+        position: absolute;
+        margin: 5% 28%;
+        font: bold 12pt Segoe UI;
+        background: var(--blueButton);
+        text-align: center;
+        width: 15rem;
+        border-radius:10px;
+        padding-top:2%;
+        padding-bottom:2%;
+        color: var(--white);
+        }
+        footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        color: var(--white);
+        background: #fd3946;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+        z-index: 1000;
+        }
+        footer p {
+        font: bold 16pt Segoe UI;
+        margin: 0.5em 5.2em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><img class="logo" src="~/fonts/logo_semFundo.png"></li>
+            <a href="AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
+            <a href="" title="Consultar"><li>CONSULTAR AGENDAMENTO</li></a>
+            <a href="../Login/Login" title="Sair"><li>SAIR</li></a>
+        </ul>
+    </nav>
+    <section>
+        <div class="col_one">
+            <h1>REALIZAR AGENDAMENTO</h1>
+            <img src="~/fonts/foto_homeFunc.png"/>
+            <a href="AgendarReserva">AGENDAR</a>
+        </div>
+    </section>
+    <footer>
+        <p>Rua Atlanta - 15, Osasco-SP</p>
+        <p class="text-copy" style="font-style: italic">&copy;BarberShop</p>
+        <p>1133651651</p>
+    </footer>
+</body>
+</html>

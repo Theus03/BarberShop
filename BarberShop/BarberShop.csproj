@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BarbeiroController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -181,6 +182,7 @@
     <Content Include="Views\Cliente\Home.cshtml" />
     <Content Include="Views\Cliente\AgendarReserva.cshtml" />
     <Content Include="Views\Cliente\VerReserva.cshtml" />
+    <Content Include="Views\Barbeiro\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

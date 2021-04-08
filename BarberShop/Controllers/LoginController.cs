@@ -32,6 +32,7 @@ namespace BarberShop.Controllers
                 if (verLogin.tipo_login == "1")
                 {
                     Session["tipoLogado1"] = verLogin.tipo_login.ToString(); //=1;
+                    return RedirectToAction("Home", "Funcionario");
                 }
                 else
                 {
