@@ -39,6 +39,31 @@ namespace BarberShop.Controllers
             ViewBag.barbeiro = new SelectList(ag, "Value", "Text");
         }
 
+        public void carregaClientes()
+        {
+            List<SelectListItem> ag = new List<SelectListItem>();
+
+            using (MySqlConnection con = new MySqlConnection("Server=localhost;DataBase=db_barbershop;User=root;pwd=Matheus2003"))
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbl_cliente order by nm_cliente;", con);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    ag.Add(new SelectListItem
+                    {
+                        Text = rdr[1].ToString(),
+                        Value = rdr[0].ToString()
+                    });
+                }
+
+                con.Close();
+                con.Open();
+            }
+
+            ViewBag.cliente = new SelectList(ag, "Value", "Text");
+        }
 
         // GET: Cliente
         public ActionResult Home()
@@ -55,6 +80,7 @@ namespace BarberShop.Controllers
         public ActionResult AgendarReserva()
         {
             carregaBarbeiros();
+            carregaClientes();
             return View();
         }
 
@@ -63,7 +89,9 @@ namespace BarberShop.Controllers
         public ActionResult AgendarReserva(modelReserva reserva)
         {
             carregaBarbeiros();
+            carregaClientes();
             reserva.cd_barbeiro = Request["barbeiro"];
+            reserva.cd_cliente = Request["cliente"];
             ac.TestarReserva(reserva);
 
             if (reserva.confReserva == "1")
@@ -79,6 +107,12 @@ namespace BarberShop.Controllers
                 return View();
             }
             return View();
+        }
+        public ActionResult VerReserva()
+        {
+            acoesReserva dbhandle = new acoesReserva();
+            ModelState.Clear();
+            return View(dbhandle.GetAgendaReserva());
         }
     }
 }

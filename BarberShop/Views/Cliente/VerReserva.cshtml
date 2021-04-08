@@ -1,4 +1,4 @@
-﻿@model BarberShop.Models.modelReserva
+﻿@model IEnumerable<BarberShop.Models.modelReserva>
 
 @{
     Layout = null;
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Agendar - BarberShop</title>
+    <title>VerReserva</title>
     <style>
         :root {
             --white: #fff;
@@ -60,53 +60,25 @@
             text-decoration: none;
             font: bold 12pt Segoe UI;
         }
-
-        section {
-            background: none;
+        .table {
+            background: white;
             position: absolute;
-            margin: 12% 27%;
+            margin: 10% 27%;
             justify-content: center;
             width: 45%;
             height: 45%;
-            display: flex;
+            padding-left:2%;
             border-radius: 10px;
         }
-
-        .campoList {
-            border: none;
-            width: 31vw;
-            padding: 20px;
-            margin-top: 1em;
-            border-radius: 30px;
+        th {
+            font: bold 14pt Segoe UI;
+            text-align: left;
+            color: var(--redMain);
         }
-
-        .campo {
-            border: none;
-            width: 28vw;
-            padding: 20px;
-            margin-top: 1em;
-            border-radius: 30px;
+        td {
+            font: bold 14pt Segoe UI;
+            margin: 0;
         }
-
-            .campo:focus, .campoList:focus {
-                border: solid 3px red;
-                outline: none;
-            }
-
-        .buttonAgendar {
-            margin: 10% 30%;
-            font: bold 12pt Segoe UI;
-            background: var(--blueButton);
-            text-align: center;
-            width: 10rem;
-            border: none;
-            border-radius: 10px;
-            padding-top: 4%;
-            padding-bottom: 4%;
-            color: var(--white);
-            cursor: pointer;
-        }
-
         footer {
             position: absolute;
             bottom: 0;
@@ -130,29 +102,52 @@
         <ul>
             <li><img class="logo" src="~/fonts/logo_semFundo.png"></li>
             <a href="AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
-            <a href="VerReserva" title="Consultar"><li>CONSULTAR AGENDAMENTO</li></a>
+            <a href="VerReserva"     title="Consultar"><li>CONSULTAR AGENDAMENTO</li></a>
             <a href="../Login/Login" title="Sair"><li>SAIR</li></a>
         </ul>
     </nav>
-    <section>
-        @using (Html.BeginForm("AgendarReserva"))
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cd_reserva)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.cd_barbeiro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cd_cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data_reserva)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.hora)
+            </th>
+        </tr>
+        @foreach (var item in Model)
         {
-            <div class="editor-field">
-                @Html.DropDownList("cliente", ViewBag.cliente as List<SelectListItem>, "SELECIONE SEU NOME", new { @class = "campoList" })
-            </div>
-            <div class="editor-field">
-                @Html.DropDownList("barbeiro", ViewBag.barbeiro as List<SelectListItem>, "SELECIONE O BARBEIRO", new { @class = "campoList" })
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(m => m.data_reserva, new { htmlAttributes = new { @type = "date", @class = "campo", @placeholder = "Data" } })
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(m => m.hora, new { htmlAttributes = new { @type = "time", @class = "campo", @placeholder = "Hora" } })
-            </div>
-            <input type="submit" value="AGENDAR" class="buttonAgendar" />
-            <span style="color: white; font:bold 14pt Segoe UI; display: flex; margin-top:-10%;">@ViewBag.msg</span>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cd_reserva)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nm_barbeiro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nm_cliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_reserva)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hora)
+        </td>
+    </tr>
+            <br />
         }
-    </section>
+    </table>
     <footer>
         <p>Rua Atlanta - 15, Osasco-SP</p>
         <p class="text-copy" style="font-style: italic">&copy;BarberShop</p>

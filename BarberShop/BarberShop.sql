@@ -21,7 +21,7 @@ create table tbl_cliente(
     celular_cliente varchar(15),
     email_cliente varchar(50)
 );
-
+insert into tbl_cliente(nm_cliente) values("Matheus Leite");
 create table tbl_barbeiro(
 	cd_barbeiro int primary key auto_increment,
     nm_barbeiro varchar(70) not null,
@@ -45,4 +45,3 @@ select tbl_reserva.cd_reserva, tbl_reserva.data_reserva,
 tbl_reserva.hora, tbl_cliente.nm_cliente,
 tbl_barbeiro.nm_barbeiro from tbl_reserva, tbl_cliente,
 tbl_barbeiro where tbl_reserva.cd_barbeiro = tbl_barbeiro.cd_barbeiro and tbl_reserva.cd_cliente = tbl_cliente.cd_cliente;
-

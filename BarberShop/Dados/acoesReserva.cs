@@ -68,14 +68,15 @@ namespace BarberShop.Dados
                     new modelReserva
                     {
                         cd_reserva = Convert.ToString(dr["cd_reserva"]),
-                        cd_cliente = Convert.ToString(dr["cd_cliente"]),
-                        cd_barbeiro = Convert.ToString(dr["cd_barbeiro"]),
+                        nm_barbeiro = Convert.ToString(dr["nm_barbeiro"]),
+                        nm_cliente = Convert.ToString(dr["nm_cliente"]),
                         data_reserva = Convert.ToString(dr["data_reserva"]),
                         hora = Convert.ToString(dr["hora"])
                     });
             }
             return Reservalist;
         }
+
 
     }
 }
