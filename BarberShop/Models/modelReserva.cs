@@ -21,6 +21,7 @@ namespace BarberShop.Models
 
         //NÃO ESTÁ NO BANCO DE DADOS
         public string confReserva { get; set; }
+        [DisplayName("Cliente")]
         public string nm_cliente { get; set; }
         [DisplayName("Barbeiro")]
         public string nm_barbeiro { get; set; }

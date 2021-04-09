@@ -10,18 +10,114 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Ver Reserva - BarberShop</title>
+    <style>
+        :root {
+            --white: #fff;
+            --redBorder: #f030010;
+            --redMain: #fd3946;
+            --blueButton: #0050f0;
+        }
+
+        body {
+            margin: 0;
+            box-sizing: border-box;
+            background-image: linear-gradient(to top, #000 0%, #09203f 100%);
+            height: 100vh;
+        }
+
+        nav {
+            margin: 4% 7%;
+            z-index: 6000;
+            position: fixed;
+            width: 85%;
+            height: 80px;
+            border-radius: 50px;
+            background: var(--white);
+            border: solid 3px red;
+            transition: 0.5s;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .logo {
+            margin: -0.5rem 3rem;
+            width: 4em;
+            transition: 0.5s;
+        }
+
+        a {
+            width: 25rem;
+            margin: 1%;
+            text-decoration: none;
+        }
+
+        li {
+            color: black;
+            text-decoration: none;
+            font: bold 12pt Segoe UI;
+        }
+
+        .table {
+            background: white;
+            position: absolute;
+            margin: 10% 13%;
+            justify-content: center;
+            width: 70%;
+            height: 45%;
+            padding-left: 2%;
+            border-radius: 10px;
+        }
+
+        th {
+            font: bold 14pt Segoe UI;
+            text-align: center;
+            color: var(--redMain);
+        }
+
+        td {
+            text-align: center;
+            font: bold 14pt Segoe UI;
+            margin: 0;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            color: var(--white);
+            background: #fd3946;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            z-index: 1000;
+        }
+
+            footer p {
+                font: bold 16pt Segoe UI;
+                margin: 0.5em 5.2em;
+            }
+        .buttonEdit{
+            color: red;
+        }
+    </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><img class="logo" src="~/fonts/logo_semFundo.png"></li>
+            <a href="AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
+            <a href="VerReserva" title="Consultar"><li>CONSULTAR AGENDAMENTO</li></a>
+            <a href="../Login/Login" title="Sair"><li>SAIR</li></a>
+        </ul>
+    </nav>
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.cd_reserva)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cd_cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cd_barbeiro)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.data_reserva)
@@ -30,51 +126,44 @@
                 @Html.DisplayNameFor(model => model.hora)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.confReserva)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.nm_cliente)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.nm_barbeiro)
             </th>
-            <th></th>
+            <th>OPÇOES DA RESERVA</th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.cd_reserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cd_cliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cd_barbeiro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.data_reserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.confReserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nm_cliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nm_barbeiro)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cd_reserva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_reserva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nm_cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nm_barbeiro)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new {  id=item.cd_reserva,  @class = "buttonEdit" }) |
+                    @Html.ActionLink("Cancelar", "Delete", new { id = item.cd_reserva,  @class ="buttonCanc"})
+                </td>
+            </tr><br/>
+        }
+
     </table>
+    <footer>
+        <p>Rua Atlanta - 15, Osasco-SP</p>
+        <p class="text-copy" style="font-style: italic">&copy;BarberShop</p>
+        <p>1133651651</p>
+    </footer>
 </body>
 </html>
