@@ -68,7 +68,7 @@ namespace BarberShop.Controllers
         // GET: Cliente
         public ActionResult Home()
         {
-            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            if (Session["usuarioLogado"] == null && Session["senhaLogado"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
@@ -79,7 +79,7 @@ namespace BarberShop.Controllers
         }
         public ActionResult AgendarReserva()
         {
-            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            if (Session["usuarioLogado"] == null && Session["senhaLogado"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
@@ -117,7 +117,7 @@ namespace BarberShop.Controllers
         }
         public ActionResult VerReserva()
         {
-            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            if (Session["usuarioLogado"] == null && Session["senhaLogado"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }

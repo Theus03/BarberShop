@@ -68,13 +68,27 @@ namespace BarberShop.Controllers
 
         public ActionResult Home()
         {
-            return View();
+            if (Session["usuarioLogado"] == null && Session["senhaLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (Session["tipoLogado2"] != null)
+            {
+                return RedirectToAction("SemAcesso", "Barbeiro");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult AgendarReserva()
         {
-            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            if (Session["usuarioLogado"] == null && Session["senhaLogado"] == null)
             {
                 return RedirectToAction("Login", "Login");
+            }
+            else if (Session["tipoLogado2"] != null){
+                return RedirectToAction("SemAcesso", "Barbeiro");
             }
             else
             {
@@ -108,11 +122,15 @@ namespace BarberShop.Controllers
             }
             return View();
         }
-        public ActionResult VerReserva()
+        public ActionResult VerReserva(modelLogin verLogin)
         {
-            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            if (Session["usuarioLogado"] == null && Session["senhaLogado"] == null)
             {
                 return RedirectToAction("Login", "Login");
+            }
+            else if (Session["tipoLogado2"] != null)
+            {
+                return RedirectToAction("SemAcesso", "Barbeiro");
             }
             else
             {
@@ -120,6 +138,10 @@ namespace BarberShop.Controllers
                 ModelState.Clear();
                 return View(dbhandle.GetAgendaReserva());
             }
+        }
+        public ActionResult SemAcesso()
+        {
+            return View();
         }
     }
 }
