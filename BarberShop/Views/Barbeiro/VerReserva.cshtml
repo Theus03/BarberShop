@@ -101,7 +101,18 @@
                 margin: 0.5em 5.2em;
             }
         .buttonEdit{
-            color: red;
+            background: var(--blueButton);
+            color: #fff;
+            font: bold 1em Segoe UI;
+            padding:5px;
+            border-radius:5px;
+        }
+        .buttonCanc {
+            background: var(--redMain);
+            color: #fff;
+            font: bold 1em Segoe UI;
+            padding: 5px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -153,8 +164,8 @@
                     @Html.DisplayFor(modelItem => item.nm_barbeiro)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new {  id=item.cd_reserva,  @class = "buttonEdit" }) |
-                    @Html.ActionLink("Cancelar", "Delete", new { id = item.cd_reserva,  @class ="buttonCanc"})
+                    @Html.ActionLink("Editar", "Edit", new { id = item.cd_reserva  }, new { @class = "buttonEdit" }) 
+                    @Html.ActionLink("Cancelar", "Delete", new { id = item.cd_reserva }, new { @class ="buttonCanc"})
                 </td>
             </tr><br/>
         }

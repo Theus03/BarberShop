@@ -138,7 +138,7 @@
         @using (Html.BeginForm("AgendarReserva"))
         {
             <div class="editor-field">
-                @Html.DropDownList("cliente", ViewBag.cliente as List<SelectListItem>, "SELECIONE SEU NOME", new { @class = "campoList" })
+                @Html.DropDownList("cliente", ViewBag.cliente as List<SelectListItem>, "NOME DO CLIENTE", new { @class = "campoList" })
             </div>
             <div class="editor-field">
                 @Html.DropDownList("barbeiro", ViewBag.barbeiro as List<SelectListItem>, "SELECIONE O BARBEIRO", new { @class = "campoList" })

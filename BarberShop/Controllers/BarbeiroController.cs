@@ -139,6 +139,26 @@ namespace BarberShop.Controllers
                 return View(dbhandle.GetAgendaReserva());
             }
         }
+
+        public ActionResult EditarReserva(string id)
+        {
+            acoesReserva sdb = new acoesReserva();
+            return View(sdb.BuscarReserva().Find(reserva => reserva.cd_reserva == id));
+        }
+        [HttpPost]
+        public ActionResult editarReserva(modelReserva reserva)
+        {
+            try
+            {
+                acoesReserva sdb = new acoesReserva();
+                sdb.editaReserva(reserva);
+                return RedirectToAction("VerReserva");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         public ActionResult SemAcesso()
         {
             return View();

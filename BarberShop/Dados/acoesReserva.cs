@@ -76,7 +76,51 @@ namespace BarberShop.Dados
             }
             return Reservalist;
         }
+        public List<modelReserva> BuscarReserva()
+        {
+            List<modelReserva> Reservalist = new List<modelReserva>();
+
+            MySqlCommand cmd = new MySqlCommand("select * from tbl_reserva", con.MyConectarBD());
+            MySqlDataAdapter sd = new MySqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+
+            con.MyDesconectarBD();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Reservalist.Add(
+                    new modelReserva
+                    {
+                        cd_reserva = Convert.ToString(dr["cd_atend"]),
+                        cd_cliente = Convert.ToString(dr["cd_cliente"]),
+                        cd_barbeiro = Convert.ToString(dr["cd_barbeiro"]),
+                        data_reserva = Convert.ToString(dr["data_reserva"]),
+                        hora = Convert.ToString(dr["hora"])
+
+                    });
+            }
+            return Reservalist;
+        }
+
+        public bool editaReserva(modelReserva reserva)
+        {
+            MySqlCommand cmd = new MySqlCommand("update tbl_reserva set data_reserva=@data_reserva, hora=@hora where cd_reserva=@cd_reserva", con.MyConectarBD());
+
+            cmd.Parameters.AddWithValue("@data_reserva", reserva.data_reserva);
+            cmd.Parameters.AddWithValue("@hora", reserva.hora);
+            cmd.Parameters.AddWithValue("@cd_reserva", reserva.cd_reserva);
 
 
+            int i = cmd.ExecuteNonQuery();
+            con.MyDesconectarBD();
+
+            if (i >= 1)
+                return true;
+
+            else
+                return false;
+        }
     }
 }
