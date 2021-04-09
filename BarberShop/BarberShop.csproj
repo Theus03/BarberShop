@@ -186,6 +186,7 @@
     <Content Include="Views\Barbeiro\AgendarReserva.cshtml" />
     <Content Include="Views\Barbeiro\VerReserva.cshtml" />
     <Content Include="Views\Barbeiro\SemAcesso.cshtml" />
+    <Content Include="Views\Barbeiro\EditarReserva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,190 @@
+﻿@model BarberShop.Models.modelReserva
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditarReserva</title>
+    <style>
+        :root {
+            --white: #fff;
+            --redBorder: #f030010;
+            --redMain: #fd3946;
+            --blueButton: #0050f0;
+        }
+
+        body {
+            margin: 0;
+            box-sizing: border-box;
+            background-image: linear-gradient(to top, #000 0%, #09203f 100%);
+            height: 100vh;
+        }
+
+        nav {
+            margin: 4% 7%;
+            z-index: 6000;
+            position: fixed;
+            width: 85%;
+            height: 80px;
+            border-radius: 50px;
+            background: var(--white);
+            border: solid 3px red;
+            transition: 0.5s;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .logo {
+            margin: -0.5rem 3rem;
+            width: 4em;
+            transition: 0.5s;
+        }
+
+        a {
+            width: 25rem;
+            margin: 1%;
+            text-decoration: none;
+        }
+
+        li {
+            color: black;
+            text-decoration: none;
+            font: bold 12pt Segoe UI;
+        }
+
+        section {
+            background: none;
+            position: absolute;
+            margin: 15% 27%;
+            justify-content: center;
+            width: 45%;
+            height: 45%;
+            display: flex;
+            border-radius: 10px;
+        }
+
+        .campoList {
+            border: none;
+            width: 31vw;
+            padding: 20px;
+            margin-top: 1em;
+            border-radius: 30px;
+        }
+
+        .campo {
+            border: none;
+            width: 28vw;
+            padding: 20px;
+            margin-top: 1em;
+            border-radius: 30px;
+        }
+        .campoCod {
+            color: white;
+            cursor: no-drop;
+            border: none;
+            width: 28vw;
+            padding: 20px;
+            margin-top: 1em;
+            border-radius: 30px;
+        }
+
+            .campo:focus, .campoList:focus {
+                border: solid 3px red;
+                outline: none;
+            }
+
+        .buttonEditar {
+            margin: 10% 30%;
+            font: bold 12pt Segoe UI;
+            background: var(--blueButton);
+            text-align: center;
+            width: 10rem;
+            border: none;
+            border-radius: 10px;
+            padding-top: 4%;
+            padding-bottom: 4%;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            color: var(--white);
+            background: #fd3946;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            z-index: 1000;
+        }
+
+            footer p {
+                font: bold 16pt Segoe UI;
+                margin: 0.5em 5.2em;
+            }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><img class="logo" src="~/fonts/logo_semFundo.png"></li>
+            <a href="../AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
+            <a href="../VerReserva" title="Consultar"><li>CONSULTAR AGENDAMENTO</li></a>
+            <a href="/Login/Login" title="Sair"><li>SAIR</li></a>
+        </ul>
+    </nav>
+    <section>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cd_reserva, new { htmlAttributes = new { @class = "campoCod", @disabled="disabled" } })
+                    @Html.ValidationMessageFor(model => model.cd_reserva, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.data_reserva, new { htmlAttributes = new { @class = "campo" } })
+                    @Html.ValidationMessageFor(model => model.data_reserva, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.hora, new { htmlAttributes = new { @class = "campo" } })
+                    @Html.ValidationMessageFor(model => model.hora, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="EDITAR" class="buttonEditar" />
+                </div>
+            </div>
+        </div>
+        }
+    </section>
+    <footer>
+        <p>Rua Atlanta - 15, Osasco-SP</p>
+        <p class="text-copy" style="font-style: italic">&copy;BarberShop</p>
+        <p>1133651651</p>
+    </footer>
+</body>
+</html>

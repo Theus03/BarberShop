@@ -142,7 +142,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.nm_barbeiro)
             </th>
-            <th>OPÇOES DA RESERVA</th>
+            <th>OPÇÕES DA RESERVA</th>
         </tr>
 
         @foreach (var item in Model)
@@ -164,7 +164,7 @@
                     @Html.DisplayFor(modelItem => item.nm_barbeiro)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.cd_reserva  }, new { @class = "buttonEdit" }) 
+                    @Html.ActionLink("Editar", "EditarReserva", new { id = item.cd_reserva  }, new { @class = "buttonEdit" }) 
                     @Html.ActionLink("Cancelar", "Delete", new { id = item.cd_reserva }, new { @class ="buttonCanc"})
                 </td>
             </tr><br/>
