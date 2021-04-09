@@ -22,6 +22,9 @@ create table tbl_cliente(
     email_cliente varchar(50)
 );
 insert into tbl_cliente(nm_cliente) values("Matheus Leite");
+insert into tbl_cliente(nm_cliente) values("Julio César");
+insert into tbl_cliente(nm_cliente) values("Fábio Lima");
+
 create table tbl_barbeiro(
 	cd_barbeiro int primary key auto_increment,
     nm_barbeiro varchar(70) not null,
@@ -30,6 +33,8 @@ create table tbl_barbeiro(
 );
 
 insert into tbl_barbeiro(nm_barbeiro) values("Alex Silva");
+insert into tbl_barbeiro(nm_barbeiro) values("Fernando Santos");
+insert into tbl_barbeiro(nm_barbeiro) values("Nilton Oliveira");
 select * from tbl_barbeiro;
 
 create table tbl_reserva(

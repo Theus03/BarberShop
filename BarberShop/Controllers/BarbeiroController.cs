@@ -108,5 +108,18 @@ namespace BarberShop.Controllers
             }
             return View();
         }
+        public ActionResult VerReserva()
+        {
+            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                acoesReserva dbhandle = new acoesReserva();
+                ModelState.Clear();
+                return View(dbhandle.GetAgendaReserva());
+            }
+        }
     }
 }
