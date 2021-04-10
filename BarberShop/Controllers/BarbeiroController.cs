@@ -3,15 +3,19 @@ using BarberShop.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace BarberShop.Controllers
 {
     public class BarbeiroController : Controller
     {
         acoesReserva ac = new acoesReserva();
+        acoesBarbeiro ab = new acoesBarbeiro();
 
         public void carregaBarbeiros()
         {
@@ -184,7 +188,76 @@ namespace BarberShop.Controllers
             }
         }
 
+        public ActionResult CadBarbeiro()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult cadBarbeiro(modelBarbeiro barbeiro)
+        {
+            ab.CadastrarBarbeiro(barbeiro);
+            ViewBag.confCadastro = " ✅ Cadastro Realizado com sucesso";
+            return View();
+        }
+        public ActionResult VerBarbeiro(modelBarbeiro barbeiro)
+        {
+            if (Session["usuarioLogado"] == null && Session["senhaLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (Session["tipoLogado2"] != null)
+            {
+                return RedirectToAction("SemAcesso", "Barbeiro");
+            }
+            else
+            {
+                ModelState.Clear();
+                return View(ab.BuscarBarbeiro());
+            }
+        }
+        public ActionResult EditarBarbeiro(string id)
+        {
+            return View(ab.BuscarBarbeiro().Find(barbeiro => barbeiro.cd_barbeiro == id));
+
+        }
+        [HttpPost]
+        public ActionResult EditarBarbeiro(modelBarbeiro barbeiro)
+        {
+            try
+            {
+                ab.editarBarbeiro(barbeiro);
+                ViewBag.msg = " ✅ Atualizado com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Deu um erro aqui: " + ex);
+                return View();
+            }
+            return View();
+        }
+        public ActionResult ExcluirBarbeiro(int id)
+        {
+            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                try
+                {
+                    if (ab.ExcluirBarbeiro(id))
+                    {
+                        ViewBag.AlertMsg = "Barbeiro excluído com sucesso";
+                    }
+                    return RedirectToAction("VerBarbeiro");
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+        }
         public ActionResult SemAcesso()
         {
             return View();

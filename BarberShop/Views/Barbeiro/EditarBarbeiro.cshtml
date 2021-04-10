@@ -1,4 +1,4 @@
-﻿@model BarberShop.Models.modelReserva
+﻿@model BarberShop.Models.modelBarbeiro
 
 @{
     Layout = null;
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Agendar - BarberShop</title>
+    <title>EditarBarbeiro</title>
     <style>
         :root {
             --white: #fff;
@@ -88,12 +88,21 @@
             border-radius: 30px;
         }
 
-            .campo:focus, .campoList:focus {
-                border: solid 3px red;
-                outline: none;
-            }
+        .campoCod {
+            cursor: no-drop;
+            border: none;
+            width: 28vw;
+            padding: 20px;
+            margin-top: 1em;
+            border-radius: 30px;
+        }
 
-        .buttonAgendar {
+        .campo:focus, .campoList:focus {
+            border: solid 3px red;
+            outline: none;
+        }
+
+        .buttonEditar {
             margin: 10% 30%;
             font: bold 12pt Segoe UI;
             background: var(--blueButton);
@@ -123,35 +132,67 @@
                 font: bold 16pt Segoe UI;
                 margin: 0.5em 5.2em;
             }
+        .linkList {
+            color: #fff;
+            font: bold 1rem Segoe UI;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <nav>
         <ul>
             <li><img class="logo" src="~/fonts/logo_semFundo.png"></li>
-            <a href="AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
+            <a href="../AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
             <a href="CadBarbeiro" title="Cadastrar"><li>CADASTRAR BARBEIRO</li></a>
-            <a href="VerReserva" title="Consultar"><li>CONSULTAR </li></a>
-            <a href="../Login/Login" title="Sair"><li>SAIR</li></a>
+            <a href="../VerReserva" title="Consultar"><li>CONSULTAR</li></a>
+            <a href="/Login/Login" title="Sair"><li>SAIR</li></a>
         </ul>
     </nav>
     <section>
-        @using (Html.BeginForm("AgendarReserva"))
+        @using (Html.BeginForm())
         {
-            <div class="editor-field">
-                @Html.DropDownList("cliente", ViewBag.cliente as List<SelectListItem>, "NOME DO CLIENTE", new { @class = "campoList" })
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cd_barbeiro, new { htmlAttributes = new { @class = "campoCod" } })
+                    @Html.ValidationMessageFor(model => model.cd_barbeiro, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="editor-field">
-                @Html.DropDownList("barbeiro", ViewBag.barbeiro as List<SelectListItem>, "SELECIONE O BARBEIRO", new { @class = "campoList" })
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nm_barbeiro, new { htmlAttributes = new { @class = "campo" } })
+                    @Html.ValidationMessageFor(model => model.nm_barbeiro, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(m => m.data_reserva, new { htmlAttributes = new { @type = "date", @class = "campo", @placeholder = "Data" } })
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cpf_barbeiro, new { htmlAttributes = new { @class = "campo" } })
+                    @Html.ValidationMessageFor(model => model.cpf_barbeiro, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(m => m.hora, new { htmlAttributes = new { @type = "time", @class = "campo", @placeholder = "Hora" } })
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.telefone_barbeiro, new { htmlAttributes = new { @class = "campo" } })
+                    @Html.ValidationMessageFor(model => model.telefone_barbeiro, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <input type="submit" value="AGENDAR" class="buttonAgendar" />
-            <span style="color: white; font:bold 14pt Segoe UI; display: flex; margin-top:-10%;">@ViewBag.msg</span>
+
+            @Html.ActionLink("Ver Lista de Barbeiro", "VerBarbeiro", "Barbeiro", new { @class = "linkList" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="EDITAR" class="buttonEditar" />
+                </div>
+            </div>
+            <span style="color: white; font:bold 14pt Segoe UI; display: flex; margin:-5% 20%;">@ViewBag.msg</span>
+        </div>
         }
     </section>
     <footer>

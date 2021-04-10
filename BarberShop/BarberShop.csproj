@@ -125,6 +125,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Dados\acoesBarbeiro.cs" />
     <Compile Include="Dados\acoesLogin.cs" />
     <Compile Include="Dados\acoesReserva.cs" />
     <Compile Include="Dados\conexao.cs" />
@@ -188,6 +189,10 @@
     <Content Include="Views\Barbeiro\SemAcesso.cshtml" />
     <Content Include="Views\Barbeiro\EditarReserva.cshtml" />
     <Content Include="Views\Barbeiro\CancelarReserva.cshtml" />
+    <Content Include="Views\Barbeiro\CadBarbeiro.cshtml" />
+    <Content Include="Views\Barbeiro\VerBarbeiro.cshtml" />
+    <Content Include="Views\Barbeiro\EditarBarbeiro.cshtml" />
+    <Content Include="Views\Barbeiro\ExcluirBarbeiro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

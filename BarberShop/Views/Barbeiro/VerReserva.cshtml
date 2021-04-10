@@ -121,7 +121,8 @@
         <ul>
             <li><img class="logo" src="~/fonts/logo_semFundo.png"></li>
             <a href="AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
-            <a href="VerReserva" title="Consultar"><li>CONSULTAR AGENDAMENTO</li></a>
+            <a href="CadBarbeiro" title="Cadastrar"><li>CADASTRAR BARBEIRO</li></a>
+            <a href="VerReserva" title="Consultar"><li>CONSULTAR</li></a>
             <a href="../Login/Login" title="Sair"><li>SAIR</li></a>
         </ul>
     </nav>
@@ -165,7 +166,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "EditarReserva", new { id = item.cd_reserva  }, new { @class = "buttonEdit" }) 
-                    @Html.ActionLink("Cancelar", "CancelarReserva", new { id = item.cd_reserva }, new { @class ="buttonCanc", onclick = "return confirm('Deseja realmente excluir?');" })
+                    @Html.ActionLink("Cancelar", "CancelarReserva", new { id = item.cd_reserva }, new { @class ="buttonCanc", onclick = "return confirm('Deseja realmente cancelar?');" })
                 </td>
             </tr><br/>
         }

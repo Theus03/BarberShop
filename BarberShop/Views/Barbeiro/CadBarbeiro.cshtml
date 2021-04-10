@@ -1,4 +1,4 @@
-﻿@model BarberShop.Models.modelReserva
+﻿@model BarberShop.Models.modelBarbeiro
 
 @{
     Layout = null;
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Agendar - BarberShop</title>
+    <title>Cadastrar Barbeiro - BarberShop</title>
     <style>
         :root {
             --white: #fff;
@@ -123,6 +123,11 @@
                 font: bold 16pt Segoe UI;
                 margin: 0.5em 5.2em;
             }
+            .linkList{
+                color: #fff;
+                font: bold 1rem Segoe UI;
+                text-decoration: underline;
+            }
     </style>
 </head>
 <body>
@@ -131,27 +136,25 @@
             <li><img class="logo" src="~/fonts/logo_semFundo.png"></li>
             <a href="AgendarReserva" title="Agendar"><li>AGENDAR</li></a>
             <a href="CadBarbeiro" title="Cadastrar"><li>CADASTRAR BARBEIRO</li></a>
-            <a href="VerReserva" title="Consultar"><li>CONSULTAR </li></a>
+            <a href="VerReserva" title="Consultar"><li>CONSULTAR</li></a>
             <a href="../Login/Login" title="Sair"><li>SAIR</li></a>
         </ul>
     </nav>
     <section>
-        @using (Html.BeginForm("AgendarReserva"))
+        @using (Html.BeginForm("CadBarbeiro"))
         {
             <div class="editor-field">
-                @Html.DropDownList("cliente", ViewBag.cliente as List<SelectListItem>, "NOME DO CLIENTE", new { @class = "campoList" })
+                @Html.EditorFor(m => m.nm_barbeiro, new { htmlAttributes = new { @class = "campo", @placeholder = "Nome do Barbeiro" } })
             </div>
             <div class="editor-field">
-                @Html.DropDownList("barbeiro", ViewBag.barbeiro as List<SelectListItem>, "SELECIONE O BARBEIRO", new { @class = "campoList" })
+                @Html.EditorFor(m => m.cpf_barbeiro, new { htmlAttributes = new { @type = "text", @class = "campo", @placeholder = "CPF" } })
             </div>
             <div class="editor-field">
-                @Html.EditorFor(m => m.data_reserva, new { htmlAttributes = new { @type = "date", @class = "campo", @placeholder = "Data" } })
+                @Html.EditorFor(m => m.telefone_barbeiro, new { htmlAttributes = new { @type = "text", @class = "campo", @placeholder = "Telefone" } })
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(m => m.hora, new { htmlAttributes = new { @type = "time", @class = "campo", @placeholder = "Hora" } })
-            </div>
-            <input type="submit" value="AGENDAR" class="buttonAgendar" />
-            <span style="color: white; font:bold 14pt Segoe UI; display: flex; margin-top:-10%;">@ViewBag.msg</span>
+            <input type="submit" value="CADASTRAR" class="buttonAgendar" />
+            <span style="color: white; font:bold 14pt Segoe UI; display: flex; margin:-5% 15%; width:25rem;">@ViewBag.confCadastro</span><br/><br/>
+            @Html.ActionLink("Ver Lista de Barbeiro", "VerBarbeiro", "Barbeiro", new { @class = "linkList" })
         }
     </section>
     <footer>

@@ -50,3 +50,5 @@ select tbl_reserva.cd_reserva, tbl_reserva.data_reserva,
 tbl_reserva.hora, tbl_cliente.nm_cliente,
 tbl_barbeiro.nm_barbeiro from tbl_reserva, tbl_cliente,
 tbl_barbeiro where tbl_reserva.cd_barbeiro = tbl_barbeiro.cd_barbeiro and tbl_reserva.cd_cliente = tbl_cliente.cd_cliente;
+
+update tbl_reserva set data_reserva="2021-04-20", hora="20:00" where cd_reserva=5;
