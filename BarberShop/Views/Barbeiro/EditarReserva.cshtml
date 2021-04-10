@@ -88,7 +88,6 @@
             border-radius: 30px;
         }
         .campoCod {
-            color: white;
             cursor: no-drop;
             border: none;
             width: 28vw;
@@ -153,7 +152,7 @@
 
             <div class="form-group">
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.cd_reserva, new { htmlAttributes = new { @class = "campoCod", @disabled="disabled" } })
+                    @Html.EditorFor(model => model.cd_reserva, new { htmlAttributes = new { @class = "campoCod"} })
                     @Html.ValidationMessageFor(model => model.cd_reserva, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -178,6 +177,7 @@
                     <input type="submit" value="EDITAR" class="buttonEditar" />
                 </div>
             </div>
+            <span style="color: white; font:bold 14pt Segoe UI; display: flex; margin:-5% 20%;">@ViewBag.msg</span>
         </div>
         }
     </section>

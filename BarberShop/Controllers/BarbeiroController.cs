@@ -150,6 +150,7 @@ namespace BarberShop.Controllers
             try
             {
                 ac.editarReserva(reserva);
+                ViewBag.msg = " ✅ Atualizado com sucesso!";
             }
             catch (Exception ex)
             {
@@ -158,6 +159,31 @@ namespace BarberShop.Controllers
             }
             return View();
         }
+        public ActionResult CancelarReserva(int id)
+        {
+            if (Session["usuarioLogado"] == null || Session["senhaLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                try
+                {
+                    acoesReserva sdb = new acoesReserva();
+
+                    if (sdb.CancelarReserva(id))
+                    {
+                        ViewBag.AlertMsg = "Reserva cancelada com sucesso";
+                    }
+                    return RedirectToAction("VerReserva");
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+        }
+
 
         public ActionResult SemAcesso()
         {

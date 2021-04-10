@@ -120,15 +120,28 @@ namespace BarberShop.Dados
                 System.Diagnostics.Debug.WriteLine("Deu um erro aqui: " + ex);
             }
             con.MyDesconectarBD();
-            if (resultEdit >= 1)
-            {
+            if (resultEdit >= 1){
                 return true;
             }
-            else
-            {
+            else{
                 return false;
             }
-
         }
+        //  Método para cancelar reserva
+        public bool CancelarReserva(int id)
+        {
+            MySqlCommand cmd = new MySqlCommand("delete from tbl_reserva where cd_reserva=@cd_reserva", con.MyConectarBD());
+
+            cmd.Parameters.AddWithValue("@cd_reserva", id);
+
+            int i = cmd.ExecuteNonQuery();
+            con.MyDesconectarBD();
+
+            if (i >= 1)
+                return true;
+            else
+                return false;
+        }
+
     }
 }

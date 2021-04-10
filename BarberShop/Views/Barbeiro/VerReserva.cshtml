@@ -165,7 +165,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "EditarReserva", new { id = item.cd_reserva  }, new { @class = "buttonEdit" }) 
-                    @Html.ActionLink("Cancelar", "Delete", new { id = item.cd_reserva }, new { @class ="buttonCanc"})
+                    @Html.ActionLink("Cancelar", "CancelarReserva", new { id = item.cd_reserva }, new { @class ="buttonCanc", onclick = "return confirm('Deseja realmente excluir?');" })
                 </td>
             </tr><br/>
         }
